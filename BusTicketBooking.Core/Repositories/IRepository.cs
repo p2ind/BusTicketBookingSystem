@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 
 namespace BusTicketBooking.Core.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TEntity> where TEntity : class
     {
-        Task<IReadOnlyList<T>> GetAllAsync();
-        Task<T> GetByIdAsync(int id);
-        Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        IEnumerable<TEntity> GetAll();
+        TEntity Find(object id);
+        void Add(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(Object id);
+
+        void Remove(TEntity entity);
+
+        int SaveChanges(); 
     }
 }
